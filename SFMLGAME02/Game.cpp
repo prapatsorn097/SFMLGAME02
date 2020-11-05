@@ -8,6 +8,12 @@ void Game::initwindow()
 	this->window->setVerticalSyncEnabled(false);
 }
 
+void Game::initTextures()
+{
+	this->textures["BULLET"] = new sf::Texture();
+	this->textures["BULLET"]->loadFromFile("images/bullet.png");
+}
+
 void Game::initPlayer()
 {
 	this->player = new Player();
@@ -20,13 +26,22 @@ Game::Game()
 {
 	this->initwindow();
 	this->initPlayer();
-
+	this->initTextures();
 }
 
 Game::~Game()
 {
 	delete this->window;
 	delete this->player;
+	//Delet textures
+	for (auto &i : this->textures)
+	{
+		delete i.second;
+	}
+	for (auto* i : this->bullets)
+	{
+		delete i;
+	}
 }
 
 
@@ -53,6 +68,14 @@ void Game::updatePollEvents()
 
 }
 
+void Game::updateBullet()
+{
+	for (auto* bullet : this->bullets)
+	{
+		bullet->update();
+	}
+}
+
 void Game::updateInput()
 {
 	//Move player
@@ -64,12 +87,18 @@ void Game::updateInput()
 		this->player->move(0.f, -1.f);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		this->player->move(0.f, 1.f);
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		this->bullets.push_back(new Bullet(this->textures["BULLET"],this->player->getPos().x, this->player->getPos().y,0.f,0.f,0.f));
+	}
 }
+
 
 void Game::update()
 {
 	this->updatePollEvents();
 	this->updateInput();
+	this->updateBullet();
 	
 }
 
@@ -80,6 +109,10 @@ void Game::render()
 	//Draw all the stuff
 	this->player->render(*this->window);
 
+	for (auto* bullet : this->bullets)
+	{
+		bullet->render(this->window);
+	}
 	this->window->display();
 	
 }
