@@ -33,12 +33,13 @@ Game::~Game()
 {
 	delete this->window;
 	delete this->player;
-	//Delet textures
+	//Delete textures
 	for (auto &i : this->textures)
 	{
 		delete i.second;
 	}
-	for (auto* i : this->bullets)
+	//Delete Bullet
+	for (auto *i : this->bullets)
 	{
 		delete i;
 	}
@@ -68,11 +69,22 @@ void Game::updatePollEvents()
 
 }
 
-void Game::updateBullet()
+void Game::updateBullets()
 {
-	for (auto* bullet : this->bullets)
+	for (auto *bullet : this->bullets)
 	{
+		unsigned counter = 0;
 		bullet->update();
+		//Bullet culling (top of screen)
+		if (bullet->getBounds().top + bullet->getBounds().height < 0.f)
+		{
+			//Delete bullet
+			delete this->bullets.at(counter);
+			this->bullets.erase(this->bullets.begin() + counter);
+			--counter;
+			std::cout << this->bullets.size() << "\n";
+		}
+		++counter;
 	}
 }
 
@@ -87,9 +99,10 @@ void Game::updateInput()
 		this->player->move(0.f, -1.f);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		this->player->move(0.f, 1.f);
+
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
-		this->bullets.push_back(new Bullet(this->textures["BULLET"],this->player->getPos().x, this->player->getPos().y,0.f,0.f,0.f));
+		this->bullets.push_back(new Bullet(this->textures["BULLET"],this->player->getPos().x, this->player->getPos().y,0.f,-1.f,5.f));
 	}
 }
 
@@ -98,7 +111,7 @@ void Game::update()
 {
 	this->updatePollEvents();
 	this->updateInput();
-	this->updateBullet();
+	this->updateBullets();
 	
 }
 
@@ -109,7 +122,7 @@ void Game::render()
 	//Draw all the stuff
 	this->player->render(*this->window);
 
-	for (auto* bullet : this->bullets)
+	for (auto *bullet : this->bullets)
 	{
 		bullet->render(this->window);
 	}

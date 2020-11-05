@@ -10,6 +10,8 @@ private:
 
 
 	float movementSpeed;
+	float attackCooldown;
+	float attackCooldownMax;
 
 //Private functions
 	void initTexture();

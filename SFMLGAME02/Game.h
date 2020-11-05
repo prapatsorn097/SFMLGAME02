@@ -32,7 +32,7 @@ public:
 	/// Functions
 	void run();
 	void updatePollEvents();
-	void updateBullet();
+	void updateBullets();
 	void updateInput();
 	void update();
 	void render();
