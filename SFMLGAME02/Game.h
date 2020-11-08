@@ -24,7 +24,7 @@ private:
 	void initwindow();
 	void initTextures();
 	void initPlayer();
-
+	void initEnemies();
 
 
 public:
@@ -37,6 +37,7 @@ public:
 	void updatePollEvents();
 	void updateBullets();
 	void updateInput();
+	void updateEnemies();
 	void update();
 	void render();
 

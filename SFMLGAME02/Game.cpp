@@ -18,6 +18,7 @@ void Game::initPlayer()
 {
 	this->player = new Player();
 	this->enemy = new Enemy(20.f, 20.f);
+	
 }
 
 
@@ -105,6 +106,11 @@ void Game::updateInput()
 	{
 		this->bullets.push_back(new Bullet(this->textures["BULLET"],this->player->getPos().x, this->player->getPos().y,0.f,-1.f,5.f));
 	}
+}
+
+void Game::updateEnemies()
+{
+
 }
 
 
