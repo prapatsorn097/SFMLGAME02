@@ -1,5 +1,5 @@
 #include "Game.h"
-#include <vector>
+
 /// Private function
 void Game::initwindow()
 {
