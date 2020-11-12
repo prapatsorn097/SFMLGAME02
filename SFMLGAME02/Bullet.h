@@ -2,7 +2,7 @@
 #ifndef BULLET_H
 #define BELLET_H
 #include<SFML/Graphics.hpp>
-#include<iostream>
+#include<stdio.h>
 
 
 
@@ -16,7 +16,7 @@ private:
 
 public:
 	Bullet();
-	Bullet(sf::Texture* texture, float pos_x, float pos_y, float dir_x, float dir_y, float movement_speed);
+	Bullet(sf::Texture *texture, float pos_x, float pos_y, float dir_x, float dir_y, float movement_speed);
 	virtual ~Bullet();
 
 	//accessor

@@ -26,6 +26,9 @@ void Player::initVaribles()
 	this->movementSpeed = 6.f;
 	this->attackCooldownMax = 10.f;
 	this->attackCooldown = attackCooldownMax;
+	
+	this->hpMax = 10;
+	this->hp = this->hpMax;
 }
 
 Player::Player()
@@ -53,6 +56,36 @@ const sf::FloatRect Player::getBounds() const
 
 }
 
+const int& Player::getHp() const
+{
+	return this->hp;
+}
+
+const int& Player::getHpMax() const
+{
+	return this->hpMax;
+}
+
+void Player::setPosition(const sf::Vector2f pos)
+{
+	this->sprite.setPosition(pos);
+}
+
+void Player::setPosition(const float x, const float y)
+{
+	this->sprite.setPosition(x, y);
+}
+
+void Player::setHp(const int hp)
+{
+	this->hp = hp;
+}
+
+void Player::loseHp(const int value)
+{
+	this->hp -= value;
+}
+
 
 void Player::move(const float dirX, const float dirY)
 {
@@ -73,8 +106,10 @@ const bool Player::canAttack()
 
 void Player::updateAttack()
 {
-	if(this->attackCooldown<this->attackCooldownMax)
+	if (this->attackCooldown < this->attackCooldownMax)
+	{
 		this->attackCooldown += 0.5f;
+	}
 }
 //Functions
 void Player::update()

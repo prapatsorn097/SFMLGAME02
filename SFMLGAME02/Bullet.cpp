@@ -1,10 +1,10 @@
 #include "Bullet.h"
 
 
-Bullet::Bullet()
+/*Bullet::Bullet()
 {
 
-}
+}*/
 
 Bullet::Bullet(sf::Texture *texture, float pos_x, float pos_y, float dir_x, float dir_y, float movement_speed)
 {
@@ -29,11 +29,12 @@ const sf::FloatRect Bullet::getBounds() const
 void Bullet::update()
 {
 	//movement
-	this->shape.move(this->movementSpeed * this->direction);
+	this->shape.move(this->movementSpeed *this->direction);
 
 }
 
 void Bullet::render(sf::RenderTarget* target)
 {
 	target->draw(this->shape);
+
 }
