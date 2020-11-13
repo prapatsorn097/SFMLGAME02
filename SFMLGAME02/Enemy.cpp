@@ -16,7 +16,7 @@ void Enemy::initVaribles()
 
 void Enemy::initShape()
 {
-	this->shape.setRadius(this->pointCount*5);
+	this->shape.setRadius(this->pointCount*3);
 	this->shape.setPointCount(this->pointCount);
 	this->shape.setFillColor(sf::Color(rand() % 255 + 1, rand() % 255 + 1, rand() % 255 + 1));
 }
@@ -39,6 +39,11 @@ const sf::FloatRect Enemy::getBounds() const
 const int& Enemy::getPoints() const
 {
 	return this->points;
+}
+
+const int& Enemy::getDamage() const
+{
+	return this->damage;
 }
 
 //Function

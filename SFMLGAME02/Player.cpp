@@ -27,9 +27,11 @@ void Player::initVaribles()
 	this->attackCooldownMax = 10.f;
 	this->attackCooldown = attackCooldownMax;
 	
-	this->hpMax = 10;
+	this->hpMax = 100;
 	this->hp = this->hpMax;
 }
+
+
 
 Player::Player()
 {
@@ -56,12 +58,13 @@ const sf::FloatRect Player::getBounds() const
 
 }
 
-const int& Player::getHp() const
+const int & Player::getHp() const
 {
 	return this->hp;
+
 }
 
-const int& Player::getHpMax() const
+const int & Player::getHpMax() const
 {
 	return this->hpMax;
 }
@@ -79,11 +82,16 @@ void Player::setPosition(const float x, const float y)
 void Player::setHp(const int hp)
 {
 	this->hp = hp;
+	
 }
 
 void Player::loseHp(const int value)
 {
 	this->hp -= value;
+	if (this->hp < 0)
+	{ 
+		this->hp = 0;
+	}
 }
 
 

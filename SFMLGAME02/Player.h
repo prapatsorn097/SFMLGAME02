@@ -36,6 +36,7 @@ public:
 	//Modifiers
 	void setPosition(const sf::Vector2f pos);
 	void setPosition(const float x, const float y);
+
 	void setHp(const int hp);
 	void loseHp(const int value);
 

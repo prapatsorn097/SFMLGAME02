@@ -29,7 +29,7 @@ private:
 
 	//system
 	unsigned points;
-
+	sf::Text gameOvertext;
 
 	//player
 	Player* player;
