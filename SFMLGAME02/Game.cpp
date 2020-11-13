@@ -66,9 +66,12 @@ void Game::initPlayer()
 
 void Game::initEnemies()
 {
+	
 	this->spawnTimerMax = 50.f;
 	this->spawnTimer = this->spawnTimerMax;
 }
+
+
 
 //Con/Des
 Game::Game()
@@ -172,6 +175,8 @@ void Game::updateGUI()
 	float hpPercent = static_cast<float>(this->player->getHp()) / this->player->getHpMax();
 	this->playerHpBar.setSize(sf::Vector2f(300.f * hpPercent, this->playerHpBar.getSize().y));
 }
+
+
 
 void Game::updateWorld()
 {

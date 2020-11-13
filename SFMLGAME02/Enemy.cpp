@@ -8,7 +8,7 @@ void Enemy::initVaribles()
 	this->type = 0;
 	this->hp = this->hpMax;
 	this->hpMax = static_cast<int>(this->pointCount);
-	this->speed = static_cast<float>(this->pointCount/3);
+	this->speed = static_cast<float>(this->pointCount/2);
 	this->damage = this->pointCount;
 	this->points = this->pointCount;
 	
@@ -16,10 +16,18 @@ void Enemy::initVaribles()
 
 void Enemy::initShape()
 {
+	if (!this->shapetexture.loadFromFile("images/Meteor01.png"))
+	{
+		printf("Load Fail");
+	}
+	this->shape.setTexture(&shapetexture);
+
 	this->shape.setRadius(this->pointCount*3);
 	this->shape.setPointCount(this->pointCount);
-	this->shape.setFillColor(sf::Color(rand() % 255 + 1, rand() % 255 + 1, rand() % 255 + 1));
+
+	this->shape.setFillColor(sf::Color(rand() % 255 + 1, rand() % 255 + 1, rand() % 255 + 1)); //แรนด้อมสี
 }
+
 Enemy::Enemy(float pos_x,float pos_y)
 {
 	this->shape.setPosition(pos_x, pos_y);

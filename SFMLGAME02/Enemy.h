@@ -7,6 +7,7 @@ class Enemy
 {
 private:
 	sf::CircleShape shape;
+	sf::Texture shapetexture;
 	unsigned pointCount;
 	int type;
 	float speed;
@@ -16,6 +17,7 @@ private:
 	int points;
 	void initVaribles();
 	void initShape();
+	
 public:
 	Enemy(float pos_x, float pos_y);
 	virtual ~Enemy();
