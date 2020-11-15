@@ -6,7 +6,6 @@
 #include <vector>
 #include<string>
 #include<sstream>
-#include "HealDrop.h"
 
 class Game
 {
@@ -43,10 +42,13 @@ private:
 	std::vector<Enemy*> enemies;
 	sf::Texture enemytexture;
 
+	
+	
+
 	float spawnTimer;
 	float spawnTimerMax;
 	
-	 
+	
 
 	//Private functions
 	void initwindow();
@@ -54,8 +56,8 @@ private:
 	void initTextures();
 	void initPlayer();
 	void initEnemies();
-	
 	void initWorld();
+
 	void initSystems();
 
 public:

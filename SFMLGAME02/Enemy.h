@@ -8,7 +8,7 @@ class Enemy
 private:
 	sf::CircleShape shape;
 	sf::Texture shapetexture;
-	unsigned pointCount;
+	//unsigned pointCount;
 	int type;
 	float speed;
 	int hp;
@@ -23,12 +23,13 @@ public:
 	virtual ~Enemy();
 	//Accessors
 	const sf::FloatRect getBounds() const;
-	const int& getPoints() const;
+	
 	const int& getDamage() const;
 
 	//Function
 	void update();
 	void render(sf::RenderTarget* target);
+	const int& getPoints() const;
 };
 
 #endif //!ENEMY_H

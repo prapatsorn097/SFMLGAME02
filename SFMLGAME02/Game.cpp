@@ -3,7 +3,7 @@
 //Private functions
 void Game::initwindow()
 {
-	this->window = new sf::RenderWindow(sf::VideoMode(800, 600), "Swaglords of Space - Game 3", sf::Style::Close | sf::Style::Titlebar);
+	this->window = new sf::RenderWindow(sf::VideoMode(800, 600), "Swaglords of Space ", sf::Style::Close | sf::Style::Titlebar);
 	this->window->setFramerateLimit(60);
 	this->window->setVerticalSyncEnabled(false);
 }
@@ -30,6 +30,7 @@ void Game::initGUI()
 	this->gameOvertext.setFont(this->font);
 	this->gameOvertext.setCharacterSize(60);
 	this->gameOvertext.setFillColor(sf::Color::Red);
+	this->gameOvertext.setString("Game Over\nPress \"R\" to restart!");
 	this->gameOvertext.setString("Game Over!");
 	this->gameOvertext.setPosition(
 		this->window->getSize().x / 2.f - this->gameOvertext.getGlobalBounds().width / 2.f,
@@ -50,9 +51,11 @@ void Game::initWorld()
 	{
 		std::cout << "ERROR::GAME::COULD NOT LOAD BACKGROUND TEXTURE" << "\n";
 	}
-
+	//this->worldBackground.scale(0.5f, 0.5f);
 	this->worldBackground.setTexture(this->worldBackgroundTex);
+
 }
+
 
 void Game::initSystems()
 {
@@ -67,7 +70,7 @@ void Game::initPlayer()
 void Game::initEnemies()
 {
 	
-	this->spawnTimerMax = 50.f;
+	this->spawnTimerMax = 20.f;
 	this->spawnTimer = this->spawnTimerMax;
 }
 
@@ -108,6 +111,7 @@ Game::~Game()
 	{
 		delete i;
 	}
+
 }
 
 //Functions
@@ -161,6 +165,7 @@ void Game::updateInput()
 			)
 		);
 	}
+	
 }
 
 void Game::updateGUI()
@@ -175,6 +180,8 @@ void Game::updateGUI()
 	float hpPercent = static_cast<float>(this->player->getHp()) / this->player->getHpMax();
 	this->playerHpBar.setSize(sf::Vector2f(300.f * hpPercent, this->playerHpBar.getSize().y));
 }
+
+
 
 
 
@@ -283,6 +290,7 @@ void Game::updateCombat()
 			}
 		}
 	}
+	
 }
 
 void Game::update()
@@ -335,7 +343,7 @@ void Game::render()
 	{
 		enemy->render(this->window);
 	}
-
+	
 	this->renderGUI();
 
 	//Game over screen

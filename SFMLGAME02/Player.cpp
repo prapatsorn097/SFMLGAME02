@@ -129,3 +129,4 @@ void Player::render(sf::RenderTarget& target)
 {
 	target.draw(this->sprite);
 }
+

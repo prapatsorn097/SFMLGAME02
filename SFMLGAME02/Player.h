@@ -46,7 +46,7 @@ public:
 	void updateAttack();
 	void update();
 	void render(sf::RenderTarget& target);
-
+	\
 
 };
 
